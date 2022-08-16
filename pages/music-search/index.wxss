@@ -1,0 +1,51 @@
+/* pages/music-search/index.wxss */
+page{
+    padding: 0 20rpx;
+    padding-top: 54px;
+}
+
+.searchInput{
+    position: fixed;
+    top: 0;
+    left: 20rpx;
+    right: 20rpx;
+}
+.van-search__content{
+    background-color: #fff !important;
+}
+.van-search{
+    padding: 20rpx 0rpx !important;
+}
+.header {
+    margin-top:-40rpx;
+}
+.hot text{
+    display: inline-block;
+    margin: 15rpx;
+    padding: 10rpx;
+    color: #000;
+    border-radius: 14rpx;
+    font-size: 26rpx;
+    font-weight: 600;
+    background-color: #fff;
+}
+.suggest{
+    padding: 20rpx 0;
+    border-radius: 20rpx;
+    background-color: #fff;
+}
+.suggest .title{
+    margin-left: 20rpx;
+    color: rgb(38, 138, 38);
+}
+.suggest .suggestList>view{
+    display: flex;
+    align-items: center;
+    font-size: 34rpx;
+}
+.suggest .suggestList image{
+    width: 80rpx;
+}
+.songResult .title{
+    color: rgb(38, 138, 38);
+}

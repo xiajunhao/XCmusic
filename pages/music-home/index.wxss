@@ -1,0 +1,84 @@
+/* pages/music-home/index.wxss */
+page{
+    padding: 0 20rpx 44px;
+}
+
+.van-search__content{
+    background-color: #fff !important;
+}
+.van-search{
+    padding: 20rpx 0rpx !important;
+}
+
+.swiper-box{
+    border-radius: 10rpx;
+    overflow: hidden;
+    transform: translateY(0);
+}
+.swiper-list{
+    width: 100%;
+}
+.swiper-list>image{
+    width: 100%;
+}
+
+.playCar{
+    box-sizing: border-box;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    height: 44px;
+    background-color: #fff;
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.2);
+    border-top-left-radius: 20rpx;
+    border-top-right-radius:20rpx;
+}
+.playCar .left {
+    display: flex;
+    align-items: center;
+    font-size: 34rpx;
+}
+.playCar .left view{
+    width: 400rpx;
+    text-overflow:ellipsis;
+    overflow:hidden;
+    white-space:nowrap;  
+}
+.playCar .left image{
+    position: relative;
+    top: -4px;
+    margin-right: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.playCar .right {
+    display: flex;
+    align-items: center;
+}
+.playCar .right image{
+    width: 30px;
+    height: 30px;
+}
+.playCar .right image:first-child{
+    margin-right: 10px;
+    width: 25px;
+    height: 25px;
+}
+
+@keyframes rotateImg{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+.songImgAnimation{
+    animation: rotateImg  16s linear infinite;
+}

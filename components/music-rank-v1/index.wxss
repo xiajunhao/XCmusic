@@ -1,0 +1,54 @@
+/* components/music-rank-v1/index.wxss */
+.hotRankList{
+    display: flex;
+    margin: 20rpx 0;
+}
+.leftImg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120rpx;
+    overflow: hidden;
+}
+.leftImg image{
+    width: 100%;
+    border-radius: 20rpx;
+}
+.rightArea{
+    overflow: hidden;
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.areaTxt{
+    overflow: hidden;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-left: 14rpx;
+}
+.title{
+    font-size: 36rpx;
+}
+.sName{
+    margin-top: 20rpx;
+    color: #666;
+    font-size: 28rpx;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.sName>text:last-child{
+    display: none;
+}
+.areaIcon{
+    width: 50rpx;
+    height: 50rpx;
+    overflow: hidden;
+}
+.areaIcon image{
+    width: 50rpx;
+    height: 50rpx;
+}

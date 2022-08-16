@@ -1,0 +1,5 @@
+{
+    "usingComponents": {
+      "item-list":"../../components/video-item-v2/index"
+    }
+}

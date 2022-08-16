@@ -1,0 +1,47 @@
+/* components/song-menu-v1/index.wxss */
+.scroll-item{
+    margin-top: 10px;
+    margin-left: -10px;
+    width: 100vw;
+    white-space: nowrap;
+    vertical-align:top
+}
+.item-list{
+    display: flex;
+    flex-direction: column;
+    display: inline-block;
+    margin-left: 10px;
+    width: 100px;
+}
+.item-list:last-child{
+    margin-right: 10px;
+}
+.list-image{
+    width: 100%;
+    position: relative;
+}
+.list-image i{
+    position: absolute;
+    right: 5px;
+    bottom: 6px;
+    color: white;
+    padding: 4rpx;
+    border-radius:6rpx;
+    font-size: 10px;
+    background-color: rgba(7, 0, 0, 0.6);
+}
+.list-image image{
+    width: 100%;
+    border-radius: 10px;
+}
+.list-title{
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+.list-title text{
+    font-size: 14px;
+    font-weight: 600;
+}

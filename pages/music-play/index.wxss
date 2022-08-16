@@ -1,0 +1,131 @@
+/* pages/music-play/index.wxss */
+page{
+    color: #fff;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+.bg-img,.bg-cove{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+.bg-cove{
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(30px);
+}
+.tabcar{
+    display: flex;
+    color: #999;
+    font-size: 40rpx;
+}
+.tabcar .split{
+    margin: 0 20rpx;
+}
+.active{
+    color: #fff;
+}
+
+/* 页面歌曲部分 */
+.music{
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    margin: 30rpx 0;
+    padding: 0 40rpx;
+    width: 100%;
+    height: 95%;
+}
+.music .img{
+    flex: 5;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.music .img image{
+    width: 100%;
+    border-radius: 30rpx;
+}
+.music .info{
+    margin: 15rpx 0;
+    width: 100%;
+    height: 166rpx;
+}
+.info .title{
+    margin-bottom: 10rpx;
+    color: #fff;
+    font-weight: 600;
+    font-size: 50rpx;
+}
+.info .songInfo{
+    color: #ccc;
+    font-size: 30rpx;
+}
+.auther{
+    margin: 10rpx 0;
+}
+.auther text:last-child{
+    display: none;
+}
+.music .lyric{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    color: rgb(4, 206, 4);
+    font-size: 36rpx;
+}
+.music .progress{
+    width: 100%;
+    height: 120rpx;
+}
+.music .progress slider {
+    box-sizing: border-box;
+    margin: 10px 0;
+    padding-left: 10rpx;
+}
+.progress view{
+    display: flex;
+    justify-content: space-between;
+}
+.operation{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 130rpx;
+}
+.operation .btn{
+    width: 80rpx;
+    height: 80rpx;
+}
+.operation .btn-pause{
+    width: 130rpx;
+    height: 130rpx;
+}
+
+/* 歌词部分 */
+.lyric{
+    height: 100%;
+}
+.lyric .lyric-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.lyric-item{
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-size: 36rpx;
+}
+.activeLyric{
+    color: rgb(4, 206, 4);
+}

@@ -1,0 +1,49 @@
+/* components/music-rank-v2/index.wxss */
+.rankSong{
+    display: flex;
+    justify-content: space-between;
+    margin: 20rpx 0;
+    background-color: white;
+    border-radius: 14rpx;
+    overflow: hidden;
+}
+.rankLeft{
+    overflow: hidden;
+    flex: 1;
+    padding: 20rpx 0 0 20rpx;
+}
+.rankLeft .title{
+    margin-bottom: 10rpx;
+    font-size: 36rpx;
+    font-weight: 600;
+}
+.rankLeft .songName{
+    margin: 10rpx 0;
+    color: #333;
+    font-size: 28rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.rankLeft .songName text:last-child{
+    color: #999;
+}
+.rankRight{
+    position: relative;
+    width: 220rpx;
+    height: 220rpx;
+}
+.rankRight image{
+    width: 100%;
+    height: 100%;
+}
+.rankRight i{
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    color: white;
+    padding: 6rpx;
+    border-radius: 14rpx;
+    font-size: 10px;
+    background-color: rgba(7, 0, 0, 0.6);
+}

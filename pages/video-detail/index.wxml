@@ -1,0 +1,26 @@
+<!--pages/video-detail/index.wxml-->
+<wxs src="../../wxs/FormDate.wxs" module="FormData" />
+<video 
+  class="video" 
+  src="{{mvUrl}}"
+  autoplay
+  loop
+  vslide-gesture
+  enable-play-gesture
+  show-background-playback-button
+ >
+ </video>
+<view class="mvInfo">
+  <text class="artTit">{{mvDetail.name}}</text>
+  <text class="art">{{mvDetail.artistName}}-</text>
+  <text>{{FormData.formPlayr(mvDetail.duration)}}</text>
+  <text> -{{mvDetail.publishTime}}</text>
+</view>
+<view>
+  <view class="relatedMv">
+    推荐视频
+  </view>
+  <view wx:for="{{mvRelated}}" wx:key="id">
+    <item-list item="{{item}}"></item-list>
+  </view>
+</view>

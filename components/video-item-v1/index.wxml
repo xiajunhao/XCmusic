@@ -1,0 +1,16 @@
+<!--components/video-item-v1/index.wxml-->
+<wxs src="../../wxs/FormDate.wxs" module="FormData" />
+<view class="video_list">
+        <view class="img_cover">
+            <image class="img" src="{{item.cover}}" mode="widthFix" ></image>
+            <view class="info">
+                <view class="playr">
+                    <image class="icon" src="../../assets/images/icons/play_icon.png"></image>{{FormData.formPlayr(item.playCount)}}
+                 </view>
+                <view class="time">{{FormData.formDuration(item.mv.videos[0].duration)}}</view>
+            </view>
+        </view>
+        <view class="name">
+            {{item.name}} - {{item.artistName}}
+        </view>
+    </view>

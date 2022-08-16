@@ -1,0 +1,64 @@
+<!--pages/music-home/index.wxml-->
+<!-- 搜索部分 -->
+<van-search 
+    background="#fafafa"
+    placeholder="请搜索"
+    shape="round"
+    disabled
+    bindtap="goSearch"
+ />
+ <!-- 轮播图部分 -->
+ <swiper class="swiper-box"
+  indicator-dots
+  autoplay
+  circular
+  style="height: {{boxHeight}}px;"
+ > 
+    <block wx:for="{{banners}}" wx:key="bannerId">
+        <swiper-item class="swiper-list">
+            <image src="{{item.pic}}" class="swiper-img" mode="widthFix" bindload="setBoxHeight"></image>
+        </swiper-item>
+    </block>
+ </swiper>
+ <!-- 歌曲推荐部分 -->
+ <view>
+    <rec-header   titleTxt="歌曲推荐"  bind:click="handMoreClick"></rec-header>
+    <view>
+        <block wx:for="{{hotRank}}" wx:key="id">
+            <hot-rank rankItem="{{item}}" bindtap="handSetSongList" data-index="{{index}}" ></hot-rank>
+        </block>
+    </view>
+ </view>
+
+
+<!-- 热门歌单部分 -->
+<song-menu   itemList="{{songMenu}}" bind:click="handMoreMenuClick" ></song-menu>
+
+<!-- 巅峰榜部分 -->
+<view class="Rank">
+    <rec-header   titleTxt="巅峰榜" isShow="{{false}}" ></rec-header>
+    <block wx:for="{{rankList}}" wx:key="id">
+        <rank-song item="{{item}}" bindtap="handRankClick" data-id="{{index}}"></rank-song>
+    </block>
+</view>
+
+
+<!-- 顶部播放卡片部分 -->
+<view class="playCar">
+    <view class="left" bindtap="handGoPlayPage" wx:if="{{currentSong.name}}">
+        <image style="animation-play-state: {{isPlaying?'running':'paused'}};"
+         class="songImgAnimation" 
+         src="{{currentSong.al.picUrl}}"
+         ></image>
+        <view>{{currentSong.name}}-{{currentSong.ar[0].name}}</view>
+    </view>
+    <view class="left" wx:else>
+        <text>暂无播放歌曲~</text>
+    </view>
+    <view class="right">
+        <image src="../../assets/images/music/{{isPlaying?'pause':'play'}}_icon.png"
+            bindtap="handPlayBtnClick"
+        ></image>
+        <image src="../../assets/images/music/playlist_icon.png"></image>
+    </view>
+</view>

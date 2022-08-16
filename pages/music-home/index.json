@@ -1,0 +1,10 @@
+{
+    "usingComponents": {
+        "van-search": "@vant/weapp/search/index",
+        "rec-header":"/components/music-header/index",
+        "hot-rank":"/components/music-rank-v1/index",
+        "song-menu":"/components/song-menu-v1/index",
+        "rank-song":"/components/music-rank-v2/index"
+      }
+      
+}

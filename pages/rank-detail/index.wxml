@@ -1,0 +1,18 @@
+<!--pages/rank-detail/index.wxml-->
+<rec-header titleTxt="{{songs.name}}" 
+    isShow="{{false}}"
+    wx:if="{{type=='Rank'}}"
+>
+</rec-header>
+<menu-header 
+    wx:if="{{type=='Menu'}}" 
+    songInfo="{{songs}}"
+>
+</menu-header>
+
+<block wx:for="{{songs.tracks}}" wx:key="index">
+    <song-item 
+    item="{{item}}" 
+    index="{{index}}"
+     bindtap="handSetSongList" data-index="{{index}}" ></song-item>
+</block>

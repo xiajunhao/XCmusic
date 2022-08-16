@@ -1,0 +1,27 @@
+var formPlayr = function (params) {
+    var num = parseInt(params)
+    if(num > 10000000){
+        num = (num / 10000000).toFixed(2) + "亿"
+        return num;
+    }else if(num > 10000){
+        num = (num / 10000).toFixed(2) + "万"
+        return num;
+    }else{
+        return num;
+    }
+}
+function addZero(params) {
+    var str = params + ""
+    return ("00"+str).slice(str.length);
+}
+var formDuration = function (params) 
+{
+   var m = parseInt((params / 1000) / 60) 
+   var s = parseInt((params / 1000) % 60)
+   return addZero(m)+":"+addZero(s);
+}
+
+module.exports = {
+    formPlayr:formPlayr,
+    formDuration:formDuration
+}

@@ -1,0 +1,50 @@
+<!--pages/music-search/index.wxml-->
+<!-- 搜索部分 -->
+<van-search 
+    background="#fafafa"
+    placeholder="请搜索"
+    shape="round"
+    show-action="{{searchValue}}"
+    value="{{searchValue}}"
+    bind:change="handSearch"
+    bind:cancel ="clearSearch"
+    bind:search="handSearchEnd"
+    class="searchInput"
+ />
+ <!-- 热门搜索部分 -->
+<view wx:if="{{!searchValue && !sugggestList.length}}">
+    <view class="header">
+        <rec-header  titleTxt="热门搜索" isShow="{{false}}" ></rec-header>
+    </view>
+    <view class="hot">
+        <block wx:for="{{hotKeyList}}" wx:key="first">
+            <text bindtap="handHotClike" data-info="{{item.first}}">{{item.first}}</text>
+        </block>
+    </view> 
+</view>
+<!-- 搜索建议部分 -->
+<view class="suggest" wx:elif="{{sugggestList.length && !resultSongs.length}}">
+    <view class="title">
+        <text>搜索 "{{searchValue}}"</text>
+    </view>
+    <view class="suggestList" wx:for="{{sugggestList}}" wx:key="keyword">
+        <view  bindtap="handSuggestClick" data-id="{{index}}">
+            <image src="../../assets/images/icons/search_icon.png" mode="widthFix"></image>
+            <rich-text nodes="{{item}}"></rich-text>
+        </view>
+    </view>
+</view>
+<!-- 搜索结果展示部分 -->
+<view class="songResult" wx:elif="{{resultSongs.length}}">
+    <view class="title">
+        <text>最佳匹配</text>
+    </view>
+  <block wx:for="{{resultSongs}}" wx:key="id">
+    <song-item
+    item="{{item}}" 
+    index="{{index}}" 
+    bindtap="handSetSongList" 
+    data-index="{{index}}"
+     ></song-item>
+  </block>
+</view>

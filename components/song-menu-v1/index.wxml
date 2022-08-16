@@ -1,0 +1,18 @@
+<!--components/song-menu-v1/index.wxml-->
+<wxs src="../../wxs/FormDate.wxs" module="FormData" />
+<view class="songMenu">
+    <rec-header   titleTxt="热门歌单" ></rec-header>
+    <scroll-view  class="scroll-item" scroll-x>
+        <block wx:for="{{itemList}}" wx:key="id" >
+            <view class="item-list" bindtap="click"  data-id="{{item.id}}">
+                <view class="list-image">
+                    <image src="{{item.picUrl}}" mode="widthFix"></image>
+                    <i>{{FormData.formPlayr(item.playCount)}}</i>
+                </view>
+                <view class="list-title">
+                    <text>{{item.name}}</text>
+                </view>
+            </view>
+        </block>
+    </scroll-view>
+</view>

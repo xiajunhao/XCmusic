@@ -1,0 +1,6 @@
+/* pages/video-home/index.wxss */
+.video{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}

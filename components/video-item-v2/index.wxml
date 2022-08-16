@@ -1,0 +1,10 @@
+<!--components/video-item-v2/index.wxml-->
+<view class="related" data-id="{{item.id}}">
+  <view class="rImg">
+    <image src="{{item.coverUrl}}" mode="widthFix"></image>
+  </view>
+  <view class="rTxt">
+    <text class="title">{{item.title}}</text>
+    <text>{{item.creator[0].userName}}</text>
+  </view>
+</view>

@@ -1,0 +1,18 @@
+<!--components/music-rank-v2/index.wxml-->
+<wxs src="../../wxs/FormDate.wxs" module="FormData"></wxs>
+<view class="rankSong">
+    <view class="rankLeft">
+        <view class="title">
+            <text>{{item.name}}</text>
+        </view>
+        <block wx:for="{{item.tracks}}" wx:for-item="song"   wx:key="index" >
+           <view class="songName">
+            <text>{{index+1}}.</text><text>{{song.first}}</text> - <text>{{song.second}}</text>
+           </view>
+        </block>
+    </view>
+    <view class="rankRight">
+        <image src="{{item.coverImgUrl}}" mode="widthFix"></image>
+        <i>{{FormData.formPlayr(item.playCount)}}</i>
+    </view>
+</view>

@@ -1,0 +1,15 @@
+<!--components/music-header/index.wxml-->
+<view class="header">
+    <view class="title">
+        <text>{{titleTxt}}</text>
+    </view>
+    <view class="more" wx:if="{{isShow}}">
+        <view class="slot">
+            <slot></slot>
+        </view>
+        <view class="default" bindtap="clickMore">
+            <text>{{rightTxt}}</text>
+            <image src="/assets/images/icons/arrow-right.png"></image>
+        </view>
+    </view>
+</view>

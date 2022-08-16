@@ -1,0 +1,31 @@
+/* pages/video-detail/index.wxss */
+page{
+  padding-top: 225px;
+}
+.video{
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+}
+.mvInfo{
+  padding: 20rpx;
+  color: #333;
+}
+.artTit{
+  display: block;
+  color: #000;
+  font-size: 50rpx;
+  font-weight: 600;
+}
+.art{
+  display: block;
+}
+.relatedMv{
+  margin-top: 5rpx;
+  margin-bottom: 10rpx;
+  padding-left: 20rpx;
+  color: #000;
+  font-size: 30rpx;
+  font-weight: 600;
+}

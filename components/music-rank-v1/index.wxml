@@ -1,0 +1,21 @@
+<!--components/music-rank-v1/index.wxml-->
+<view class="hotRankList" bindtap="goPlay">
+    <view class="leftImg">
+        <image src="{{rankItem.al.picUrl}}" mode="widthFix"></image>
+    </view>
+    <view class="rightArea">
+        <view class="areaTxt">
+            <text class="title">{{rankItem.name}}</text>
+            <view class="sName">
+                <block wx:for="{{rankItem.ar}}" wx:key="id">
+                    <text>{{item.name}}</text>
+                    <text> / </text>
+                </block>
+            </view>
+        </view>
+        <view class="areaIcon">
+            <image src="../../assets/images/icons/arrow-right.png"></image>
+        </view>
+    </view>
+</view>
+

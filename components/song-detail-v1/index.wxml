@@ -1,0 +1,22 @@
+<!--components/song-detail-v1/index.wxml-->
+<view class="songItem" bindtap="goPlay">
+    <view class="songIndex">
+        <text>{{index+1}}</text>
+    </view>
+    <view class="songContent">
+        <view class="songName">
+            <text>{{item.name}}</text>
+        </view>
+        <view class="songAuther">
+            <view class="IconImg">
+                <image src="../../assets/images/icons/sq_icon.png" mode="widthFix"></image>
+            </view>
+            <view class="autherName">
+                <block wx:for="{{item.ar || item.artists}}" wx:key="index" wx:for-item="author">
+                   <text> {{author.name}}</text>
+                   <text> / </text>
+                </block>
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,35 @@
+<!--components/menu-header-v1/index.wxml-->
+<wxs src="../../wxs/FormDate.wxs" module="FormData"></wxs>
+<view class="menuHeader">
+    <image class="bgImg" src="{{songInfo.coverImgUrl}}" mode="scaleToFill"></image>
+    <view class="obscure"></view>
+    <view class="content">
+        <view class="contentTop">
+            <view class="leftImg">
+                <image src="{{songInfo.coverImgUrl}}" mode="scaleToFill"></image>
+            </view>
+            <view class="rightInfo">
+                <view class="title">
+                    {{songInfo.name}}
+                </view>
+                <view class="creator">
+                    <image src="{{songInfo.creator.avatarUrl}}" mode="scaleToFill"></image>
+                    <text>{{songInfo.creator.nickname}}</text>
+                </view>
+                <view class="synopsis">
+                    <text>简介:{{songInfo.description}}</text>
+                </view>
+            </view>
+        </view>
+        <view class="contentBottom">
+            <view class="leftStar">
+                <image src="../../assets/images/icons/favor_icon.png"></image>
+                <text>{{FormData.formPlayr(songInfo.subscribedCount)}}</text>
+            </view>
+            <view class="rightShare">
+                <image src="../../assets/images/icons/share_icon.png"></image>
+                <text>分享</text>
+            </view>
+        </view>
+    </view>
+</view>
