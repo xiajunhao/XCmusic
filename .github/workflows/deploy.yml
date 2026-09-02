@@ -43,7 +43,6 @@ jobs:
 
       - name: Deploy to Sealos
         run: |
-          kubectl apply -f dep.yaml --validate=false
           kubectl set image deployment/xcmusic xcmusic=${{ secrets.IMAGE_SC }}:${{ github.sha }} -n user-system
           kubectl rollout status deployment/xcmusic -n user-system --timeout=180s
 
