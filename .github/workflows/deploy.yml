@@ -1,0 +1,32 @@
+name: CI/CD to Sealos
+
+on:
+  push:
+    branches: [ master ]        # 或改成分支/标签触发
+  workflow_dispatch: 
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+
+      # 1. 登录 GHCR
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}   # 内置 token，不用配 Secret
+
+      # 2. 构建并推送镜像（用 commit sha 做不可变 tag，便于回滚）
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ secrets.IMAGE_SC }}:latest
+            ${{ secrets.IMAGE_SC }}:${{ github.sha }}
