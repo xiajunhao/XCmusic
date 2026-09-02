@@ -30,3 +30,21 @@ jobs:
           tags: |
             ${{ secrets.IMAGE_SC }}:latest
             ${{ secrets.IMAGE_SC }}:${{ github.sha }}
+            
+      # 3. 安装 kubectl
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v4
+
+      # 4. 写入 kubeconfig（连 Sealos 集群的凭据）
+      - name: Configure kubeconfig
+        run: |
+          mkdir -p $HOME/.kube
+          echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
+          chmod 600 $HOME/.kube/config
+
+      # 5. 部署到 Sealos
+      - name: Deploy to Sealos
+        run: |
+          kubectl apply -f dep.yaml
+          kubectl set image deployment/xcmusic xcmusic=${{ secrets.IMAGE_SC }}:${{ github.sha }} -n user-system
+          kubectl rollout status deployment/xcmusic -n user-system --timeout=180s
