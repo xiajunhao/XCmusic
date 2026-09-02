@@ -37,9 +37,11 @@ jobs:
 
       # 4. 写入 kubeconfig（连 Sealos 集群的凭据）
       - name: Configure kubeconfig
+        env:
+          KUBECONFIG_B64: ${{ secrets.KUBECONFIG }}
         run: |
           mkdir -p $HOME/.kube
-          echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
+          printf '%s' "$KUBECONFIG_B64" | base64 -d > $HOME/.kube/config
           chmod 600 $HOME/.kube/config
 
       # 5. 部署到 Sealos
