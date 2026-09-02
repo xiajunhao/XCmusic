@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xcmusic
+  namespace: user-system
+  labels:
+    app: xcmusic
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: xcmusic
+  template:
+    metadata:
+      labels:
+        app: xcmusic
+    spec:
+      containers:
+      - name: xcmusic                    # 容器名，后面 CI 的 set image 要用它
+        image: ghcr.io/xiajunhao/xcmusic:latest
+        imagePullPolicy: Always           # 用 latest 必须配，否则不拉新镜像
+        ports:
+        - containerPort: 80             # 改成你 server 实际监听的端口
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 500m
+            memory: 512Mi
