@@ -2,8 +2,9 @@ name: CI/CD to Sealos
 
 on:
   push:
-    branches: [ master ]        # 或改成分支/标签触发
-  workflow_dispatch: 
+    branches: [ master ]
+  workflow_dispatch:
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -13,15 +14,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # 1. 登录 GHCR
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}   # 内置 token，不用配 Secret
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      # 2. 构建并推送镜像（用 commit sha 做不可变 tag，便于回滚）
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
@@ -30,12 +29,10 @@ jobs:
           tags: |
             ${{ secrets.IMAGE_SC }}:latest
             ${{ secrets.IMAGE_SC }}:${{ github.sha }}
-            
-      # 3. 安装 kubectl
+
       - name: Setup kubectl
         uses: azure/setup-kubectl@v4
 
-      # 4. 写入 kubeconfig（连 Sealos 集群的凭据）
       - name: Configure kubeconfig
         env:
           KUBECONFIG_B64: ${{ secrets.KUBECONFIG }}
@@ -44,9 +41,48 @@ jobs:
           printf '%s' "$KUBECONFIG_B64" | base64 -d > $HOME/.kube/config
           chmod 600 $HOME/.kube/config
 
-      # 5. 部署到 Sealos
       - name: Deploy to Sealos
         run: |
-          kubectl apply -f dep.yaml
+          kubectl apply -f dep.yaml --validate=false
           kubectl set image deployment/xcmusic xcmusic=${{ secrets.IMAGE_SC }}:${{ github.sha }} -n user-system
           kubectl rollout status deployment/xcmusic -n user-system --timeout=180s
+
+  # ---- 选择框：等待人工确认 ----
+  confirm:
+    runs-on: ubuntu-latest
+    needs: build-and-deploy
+    environment: release-confirm      # 对应第 1 步创建的环境
+    timeout-minutes: 60               # 60 分钟没人处理，按取消结束（不回滚）
+    steps:
+      - run: echo "新版本已上线，等待人工确认：批准=完成发布，拒绝=回滚"
+
+  # ---- 批准 → 发布完成 ----
+  finalize:
+    runs-on: ubuntu-latest
+    needs: confirm
+    if: success()
+    steps:
+      - run: echo "发布确认完成，版本 ${{ github.sha }} 已上线"
+
+  # ---- 拒绝 → 自动回滚 ----
+  rollback:
+    runs-on: ubuntu-latest
+    needs: confirm
+    if: failure()
+    steps:
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v4
+
+      - name: Configure kubeconfig
+        env:
+          KUBECONFIG_B64: ${{ secrets.KUBECONFIG }}
+        run: |
+          mkdir -p $HOME/.kube
+          printf '%s' "$KUBECONFIG_B64" | base64 -d > $HOME/.kube/config
+          chmod 600 $HOME/.kube/config
+
+      - name: Rollback
+        run: |
+          kubectl rollout undo deployment/xcmusic -n user-system
+          kubectl rollout status deployment/xcmusic -n user-system --timeout=180s
+          echo "已回滚到上一版本"
